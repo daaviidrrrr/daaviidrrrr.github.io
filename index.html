@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitnessPro - Tu Guía Completa de Fitness y Salud</title>
+    <meta name="description" content="Descubre planes de entrenamiento personalizados, guías de suplementación y recursos gratuitos para mejorar tu condición física y salud.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, #065f46, #10b981);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo h2 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #fbbf24;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn--primary {
+            background: linear-gradient(135deg, #f59e0b, #dc2626);
+            color: white;
+        }
+
+        .btn--primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #065f46 0%, #10b981 100%);
+            color: white;
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .btn--lg {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: white;
+            padding: 4rem 0;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: #10b981;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            color: #6b7280;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+
+        .section--alt {
+            background: #f3f4f6;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .card p {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .card ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .card li {
+            padding: 0.25rem 0;
+            color: #374151;
+        }
+
+        .card li::before {
+            content: "✅ ";
+            margin-right: 0.5rem;
+        }
+
+        /* Chatbot Section */
+        .chatbot-section {
+            background: linear-gradient(135deg, #1f2937, #374151);
+            color: white;
+            text-align: center;
+        }
+
+        .chatbot-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: #111827;
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer h4 {
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #10b981;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            color: #9ca3af;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h2>💪 FitnessPro</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#suplementos">Suplementos</a></li>
+                    <li><a href="#salud">Salud</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <button class="btn btn--primary">🤖 Chatbot</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-text">
+                <h1>Transforma Tu Cuerpo, <span class="highlight">Transforma Tu Vida</span></h1>
+                <p>Descubre planes de entrenamiento personalizados, guías de suplementación científicamente respaldadas y recursos gratuitos para alcanzar tus objetivos fitness.</p>
+                <div class="hero-cta">
+                    <a href="#chatbot" class="btn btn--primary btn--lg">🚀 Prueba el Chatbot y Recibe tu Plan en PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <h3>31%</h3>
+                    <p>de adultos no hacen suficiente ejercicio (OMS)</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>30%</h3>
+                    <p>reducción del riesgo de muerte con ejercicio regular</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>80%</h3>
+                    <p>de adolescentes son físicamente inactivos</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>+500</h3>
+                    <p>beneficios científicamente probados del ejercicio</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Suplementos Section -->
+    <section id="suplementos" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Guía de Suplementos Esenciales</h2>
+            <div class="cards-grid">
+                <div class="card fade-in">
+                    <div class="card-icon">💊</div>
+                    <h3>Creatina</h3>
+                    <p>El suplemento rey para el rendimiento. Uno de los más estudiados y efectivos para ejercicios de alta intensidad.</p>
+                    <ul>
+                        <li>Aumenta la fuerza y potencia muscular</li>
+                        <li>Mejora el rendimiento explosivo</li>
+                        <li>Acelera la recuperación entre series</li>
+                        <li>Puede mejorar la función cognitiva</li>
+                    </ul>
+                    <p><strong>Dosis:</strong> 5g diarios | <strong>Cuándo:</strong> Cualquier momento</p>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="card-icon">🥛</div>
+                    <h3>Proteína Whey</h3>
+                    <p>Tu aliado para el crecimiento muscular. Proteína completa con todos los aminoácidos esenciales.</p>
+                    <ul>
+                        <li>Promueve el crecimiento muscular</li>
+                        <li>Mejora la recuperación post-entrenamiento</li>
+                        <li>Ayuda en el control del peso</li>
+                        <li>Propiedades antiinflamatorias</li>
+                    </ul>
+                    <p><strong>Dosis:</strong> 25-50g | <strong>Cuándo:</strong> Después del entrenamiento</p>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="card-icon">🐟</div>
+                    <h3>Omega-3</h3>
+                    <p>Salud cardiovascular y cerebral. Ácidos grasos esenciales para múltiples funciones corporales.</p>
+                    <ul>
+                        <li>Mejora la salud cardiovascular</li>
+                        <li>Reduce la inflamación</li>
+                        <li>Apoya la función cerebral</li>
+                        <li>Ayuda en la recuperación muscular</li>
+                    </ul>
+                    <p><strong>Dosis:</strong> 1-3g EPA/DHA | <strong>Cuándo:</strong> Con las comidas</p>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="card-icon">☕</div>
+                    <h3>Cafeína</h3>
+                    <p>Energía y rendimiento mental. El estimulante más consumido y uno de los ergogénicos más efectivos.</p>
+                    <ul>
+                        <li>Mejora el estado de alerta</li>
+                        <li>Aumenta el rendimiento físico</li>
+                        <li>Mejora la concentración</li>
+                        <li>Acelera la quema de grasa</li>
+                    </ul>
+                    <p><strong>Dosis:</strong> 3-6mg/kg peso | <strong>Cuándo:</strong> 30-60min antes del ejercicio</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Salud Section -->
+    <section id="salud" class="section section--alt">
+        <div class="container">
+            <h2 class="section-title fade-in">Beneficios del Ejercicio Físico</h2>
+            <div class="cards-grid">
+                <div class="card fade-in">
+                    <div class="card-icon">💪</div>
+                    <h3>Beneficios Físicos</h3>
+                    <ul>
+                        <li>Fortalece el sistema cardiovascular</li>
+                        <li>Mejora la densidad ósea</li>
+                        <li>Aumenta la masa muscular</li>
+                        <li>Mejora flexibilidad y movilidad</li>
+                        <li>Fortalece el sistema inmunológico</li>
+                        <li>Mejora el control del peso</li>
+                    </ul>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="card-icon">🧠</div>
+                    <h3>Beneficios Mentales</h3>
+                    <ul>
+                        <li>Reduce el estrés y la ansiedad</li>
+                        <li>Mejora el estado de ánimo</li>
+                        <li>Aumenta la autoestima</li>
+                        <li>Mejora la calidad del sueño</li>
+                        <li>Reduce el riesgo de depresión</li>
+                        <li>Mejora la función cognitiva</li>
+                    </ul>
+                </div>
+
+                <div class="card fade-in">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Prevención de Enfermedades</h3>
+                    <ul>
+                        <li>Reduce riesgo de enfermedades cardíacas</li>
+                        <li>Previene la diabetes tipo 2</li>
+                        <li>Reduce riesgo de varios cánceres</li>
+                        <li>Previene la osteoporosis</li>
+                        <li>Reduce el riesgo de demencia</li>
+                        <li>Mejora la longevidad</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <section id="chatbot" class="section chatbot-section">
+        <div class="container">
+            <div class="chatbot-content fade-in">
+                <h2 class="section-title" style="color: white;">🤖 Chatbot Personalizado</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Responde un cuestionario rápido y recibe tu plan de entrenamiento y suplementación personalizado en PDF.</p>
+                <button class="btn btn--primary btn--lg">Comenzar Cuestionario</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Últimos Artículos del Blog</h2>
+            <div class="cards-grid">
+                <div class="card fade-in">
+                    <h3>Guía Completa para Principiantes</h3>
+                    <p>Todo lo que necesitas saber para empezar tu viaje fitness de forma segura y efectiva.</p>
+                    <a href="#" class="btn btn--primary">Leer Más</a>
+                </div>
+                <div class="card fade-in">
+                    <h3>Los Mejores Ejercicios para Músculo</h3>
+                    <p>Ejercicios fundamentales respaldados por ciencia para maximizar el crecimiento muscular.</p>
+                    <a href="#" class="btn btn--primary">Leer Más</a>
+                </div>
+                <div class="card fade-in">
+                    <h3>Nutrición Pre y Post Entrenamiento</h3>
+                    <p>Optimiza tus resultados con las estrategias nutricionales más efectivas.</p>
+                    <a href="#" class="btn btn--primary">Leer Más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h4>FitnessPro</h4>
+                    <p>Tu guía completa hacia un estilo de vida más saludable y activo.</p>
+                </div>
+                <div>
+                    <h4>Enlaces Útiles</h4>
+                    <p><a href="#">Sobre Nosotros</a></p>
+                    <p><a href="#">Recursos Gratuitos</a></p>
+                    <p><a href="#">Newsletter</a></p>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <p><a href="#">Política de Privacidad</a></p>
+                    <p><a href="#">Términos de Uso</a></p>
+                    <p><a href="#">Disclaimer de Salud</a></p>
+                </div>
+                <div>
+                    <h4>Redes Sociales</h4>
+                    <p><a href="#">Instagram</a></p>
+                    <p><a href="#">YouTube</a></p>
+                    <p><a href="#">TikTok</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FitnessPro. Todos los derechos reservados. | Información con fines educativos únicamente.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Event listeners
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Chatbot button functionality
+        document.querySelectorAll('.btn').forEach(button => {
+            if (button.textContent.includes('Chatbot') || button.textContent.includes('Cuestionario')) {
+                button.addEventListener('click', () => {
+                    alert('¡Próximamente! El chatbot estará disponible muy pronto. Mientras tanto, explora nuestras guías de suplementos y salud.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
