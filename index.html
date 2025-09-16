@@ -1,956 +1,668 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitnessPro - Tu Guía Completa de Fitness y Salud</title>
-    <meta name="description" content="Descubre planes personalizados, suplementación científica y recursos gratuitos para transformar tu cuerpo y salud.">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Loading Screen -->
-    <div id="loading" class="loading-screen">
-        <div class="loader">💪</div>
-        <p>Cargando FitnessPro...</p>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">
-                    <h2>💪 FitnessPro</h2>
+<!-- Hero Section -->
+<section id="inicio" class="hero">
+    <div class="hero-particles"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🔬 Basado en +1000 estudios científicos</span>
+            </div>
+            <h1 class="hero-title">
+                Transforma Tu Cuerpo con 
+                <span class="highlight">Ciencia Real</span>
+            </h1>
+            <p class="hero-subtitle">
+                Planes personalizados, suplementación basada en evidencia y recursos gratuitos respaldados por investigación científica.
+            </p>
+            <div class="hero-cta">
+                <button class="btn btn--primary btn--lg chatbot-trigger">
+                    🚀 Crear Mi Plan Personalizado
+                </button>
+                <a href="#blog" class="btn btn--outline btn--lg">
+                    📚 Explorar Artículos
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">15K+</span>
+                    <span class="stat-text">Usuarios Activos</span>
                 </div>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="#inicio">Inicio</a></li>
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-text">Artículos Científicos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-text">Satisfacción</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Indicators -->
+<section class="trust-section">
+    <div class="container">
+        <div class="trust-grid">
+            <div class="trust-item">
+                <div class="trust-icon">⚠️</div>
+                <h3>31%</h3>
+                <p>de adultos no hacen suficiente ejercicio (OMS)</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">💯</div>
+                <h3>20-30%</h3>
+                <p>reducción del riesgo de muerte con ejercicio regular</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">📊</div>
+                <h3>80%</h3>
+                <p>de adolescentes son físicamente inactivos</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">🧬</div>
+                <h3>+500</h3>
+                <p>beneficios comprobados del ejercicio</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Supplements Section -->
+<section id="suplementos" class="section supplements-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Guía Científica de Suplementos</h2>
+            <p class="section-subtitle">Información basada en meta-análisis y estudios peer-reviewed</p>
+        </div>
+
+        <div class="supplements-grid">
+            <!-- Creatina -->
+            <article class="supplement-card">
+                <div class="card-header">
+                    <div class="supplement-icon">💊</div>
+                    <div class="evidence-badge">A+ Evidencia</div>
+                </div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1571175351731-2f36be341f90?w=600&h=300&fit=crop&auto=format&q=80" 
+                         alt="Creatina monohidrato suplemento" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>Creatina Monohidrato</h3>
+                    <p class="supplement-desc">El suplemento más estudiado del mundo. +700 estudios confirman su eficacia y seguridad.</p>
+                    
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <span class="benefit-icon">⚡</span>
+                            <span>+15% fuerza y potencia</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🔄</span>
+                            <span>Recuperación más rápida</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🧠</span>
+                            <span>Mejora función cognitiva</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">💪</span>
+                            <span>Aumento de masa muscular</span>
+                        </div>
+                    </div>
+
+                    <div class="dosage-info">
+                        <div class="dosage-item">
+                            <strong>Dosis óptima:</strong> 5g diarios
+                        </div>
+                        <div class="dosage-item">
+                            <strong>Timing:</strong> Cualquier momento (flexible)
+                        </div>
+                        <div class="dosage-item">
+                            <strong>Carga:</strong> No necesaria - mito desmentido
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Proteína Whey -->
+            <article class="supplement-card">
+                <div class="card-header">
+                    <div class="supplement-icon">🥛</div>
+                    <div class="evidence-badge">A Evidencia</div>
+                </div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600&h=300&fit=crop&auto=format&q=80" 
+                         alt="Proteína whey en polvo" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>Proteína Whey</h3>
+                    <p class="supplement-desc">Proteína completa con aminoácidos esenciales. Conveniente, no mágica.</p>
+                    
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🏗️</span>
+                            <span>Síntesis de proteína muscular</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">❤️</span>
+                            <span>Reducción presión arterial</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🍽️</span>
+                            <span>Mayor saciedad</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🔥</span>
+                            <span>Propiedades antiinflamatorias</span>
+                        </div>
+                    </div>
+
+                    <div class="dosage-info">
+                        <div class="dosage-item">
+                            <strong>Dosis:</strong> 25-50g por porción
+                        </div>
+                        <div class="dosage-item">
+                            <strong>Timing:</strong> <span class="myth-correction">Flexible - no hay "ventana anabólica"</span>
+                        </div>
+                        <div class="dosage-item">
+                            <strong>Uso:</strong> Complemento, no sustituto de alimentos
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Omega-3 -->
+            <article class="supplement-card">
+                <div class="card-header">
+                    <div class="supplement-icon">🐟</div>
+                    <div class="evidence-badge">A+ Evidencia</div>
+                </div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=600&h=300&fit=crop&auto=format&q=80" 
+                         alt="Suplementos omega-3 aceite pescado" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>Omega-3 (EPA/DHA)</h3>
+                    <p class="supplement-desc">Ácidos grasos esenciales con múltiples beneficios para salud cardiovascular y cerebral.</p>
+                    
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <span class="benefit-icon">💓</span>
+                            <span>Salud cardiovascular</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🧠</span>
+                            <span>Función cerebral y memoria</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🔥</span>
+                            <span>Reducción inflamación</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🏃</span>
+                            <span>Recuperación muscular</span>
+                        </div>
+                    </div>
+
+                    <div class="dosage-info">
+                        <div class="dosage-item">
+                            <strong>Dosis:</strong> 2-3g EPA/DHA combinados
+                        </div>
+                        <div class="dosage-item">
+                            <strong>Timing:</strong> Con comidas (mejor absorción)
+                        </div>
+                        <div class="dosage-item">
+                            <strong>Fuente:</strong> Aceite de pescado o algas
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Cafeína -->
+            <article class="supplement-card">
+                <div class="card-header">
+                    <div class="supplement-icon">☕</div>
+                    <div class="evidence-badge">A Evidencia</div>
+                </div>
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=300&fit=crop&auto=format&q=80" 
+                         alt="Café cafeína pre entreno" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>Cafeína</h3>
+                    <p class="supplement-desc">El ergogénico más estudiado y efectivo. Reconocido por el COI como ayuda ergogénica legal.</p>
+                    
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <span class="benefit-icon">⚡</span>
+                            <span>+3-7% rendimiento físico</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🎯</span>
+                            <span>Mayor concentración</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">🔥</span>
+                            <span>Oxidación de grasas</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">⏱️</span>
+                            <span>Reducción fatiga percibida</span>
+                        </div>
+                    </div>
+
+                    <div class="dosage-info">
+                        <div class="dosage-item">
+                            <strong>Dosis:</strong> 3-6mg/kg peso corporal
+                        </div>
+                        <div class="dosage-item">
+                            <strong>Timing:</strong> 30-45 min pre-entrenamiento
+                        </div>
+                        <div class="dosage-item">
+                            <strong>Límite:</strong> Máximo 400mg/día
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Myth Busting Section -->
+        <div class="myth-section">
+            <h3>🔬 Mitos Desmentidos por la Ciencia</h3>
+            <div class="myths-grid">
+                <div class="myth-card">
+                    <div class="myth-header">
+                        <span class="myth-icon">❌</span>
+                        <h4>MITO</h4>
+                    </div>
+                    <p>"La proteína debe tomarse inmediatamente después del ejercicio"</p>
+                    <div class="truth-section">
+                        <div class="truth-header">
+                            <span class="truth-icon">✅</span>
+                            <h4>REALIDAD</h4>
+                        </div>
+                        <p>La "ventana anabólica" es un mito. Lo importante es el total diario de proteína, no el timing exacto.</p>
+                    </div>
+                </div>
+                
+                <div class="myth-card">
+                    <div class="myth-header">
+                        <span class="myth-icon">❌</span>
+                        <h4>MITO</h4>
+                    </div>
+                    <p>"La creatina requiere fase de carga"</p>
+                    <div class="truth-section">
+                        <div class="truth-header">
+                            <span class="truth-icon">✅</span>
+                            <h4>REALIDAD</h4>
+                        </div>
+                        <p>5g diarios son suficientes. La carga solo acelera la saturación, pero no es necesaria.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Health Section -->
+<section id="salud" class="section health-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Ciencia del Ejercicio y Salud</h2>
+            <p class="section-subtitle">Beneficios respaldados por investigación de la OMS y estudios longitudinales</p>
+        </div>
+
+        <div class="health-grid">
+            <div class="health-category">
+                <div class="category-visual">
+                    <div class="category-icon">💪</div>
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=300&fit=crop&auto=format&q=80" 
+                         alt="Ejercicio físico beneficios" loading="lazy">
+                </div>
+                <div class="category-content">
+                    <h3>Beneficios Físicos</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit">
+                            <strong>Sistema Cardiovascular:</strong>
+                            <p>35% reducción riesgo cardiopatías</p>
+                        </div>
+                        <div class="benefit">
+                            <strong>Densidad Ósea:</strong>
+                            <p>Prevención osteoporosis y fracturas</p>
+                        </div>
+                        <div class="benefit">
+                            <strong>Masa Muscular:</strong>
+                            <p>Previene sarcopenia relacionada con edad</p>
+                        </div>
+                        <div class="benefit">
+                            <strong>Sistema Inmune:</strong>
+                            <p>40% menos infecciones respiratorias</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="health-category">
+                <div class="category-visual">
+                    <div class="category-icon">🧠</div>
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&h=300&fit=crop&auto=format&q=80" 
+                         alt="Salud mental ejercicio" loading="lazy">
+                </div>
+                <div class="category-content">
+                    <h3>Beneficios Mentales</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit">
+                            <strong>Depresión y Ansiedad:</strong>
+                            <p>Tan efectivo como algunos medicamentos</p>
+                        </div>
+                        <div class="benefit">
+                            <strong>Función Cognitiva:</strong>
+                            <p>Mejora memoria y concentración</p>
+                        </div>
+                        <div class="benefit">
+                            <strong>Calidad del Sueño:</strong>
+                            <p>Mejor arquitectura del sueño</p>
+                        </div>
+                        <div class="benefit">
+                            <strong>Neuroplasticidad:</strong>
+                            <p>Estimula crecimiento de nuevas neuronas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="health-category">
+                <div class="category-visual">
+                    <div class="category-icon">🛡️</div>
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=500&h=300&fit=crop&auto=format&q=80" 
+                         alt="Prevención enfermedades ejercicio" loading="lazy">
+                </div>
+                <div class="category-content">
+                    <h3>Prevención de Enfermedades</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit">
+                            <strong>Diabetes Tipo 2:</strong>
+                            <p>42% reducción del riesgo</p>
+                        </div>
+                        <div class="benefit">
+                            <strong>Cáncer:</strong>
+                            <p>Reduce riesgo de 13 tipos diferentes</p>
+                        </div>
+                        <div class="benefit">
+                            <strong>Demencia:</strong>
+                            <p>30% menor riesgo de Alzheimer</p>
+                        </div>
+                        <div class="benefit">
+                            <strong>Longevidad:</strong>
+                            <p>3-7 años adicionales de vida saludable</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Calculator -->
+        <div class="calculator-section">
+            <h3>🧮 Calculadora de Beneficios Personalizados</h3>
+            <div class="calculator">
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label for="weeklyMinutes">Minutos de ejercicio por semana:</label>
+                        <input type="range" id="weeklyMinutes" min="0" max="300" value="150">
+                        <span class="range-value">150 min</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="userAge">Tu edad:</label>
+                        <input type="range" id="userAge" min="18" max="80" value="30">
+                        <span class="range-value">30 años</span>
+                    </div>
+                </div>
+                <div class="calculator-results">
+                    <div class="result-card">
+                        <h4>Reducción Riesgo Cardiovascular</h4>
+                        <span class="result-value" id="cardioResult">20%</span>
+                    </div>
+                    <div class="result-card">
+                        <h4>Años de Vida Añadidos</h4>
+                        <span class="result-value" id="lifeResult">2.5 años</span>
+                    </div>
+                    <div class="result-card">
+                        <h4>Reducción Riesgo Diabetes</h4>
+                        <span class="result-value" id="diabetesResult">25%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Section -->
+<section id="blog" class="section blog-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Blog Basado en Evidencia</h2>
+            <p class="section-subtitle">Artículos respaldados por investigación peer-reviewed</p>
+        </div>
+
+        <div class="blog-filters">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="entrenamiento">Entrenamiento</button>
+            <button class="filter-btn" data-filter="nutricion">Nutrición</button>
+            <button class="filter-btn" data-filter="suplementos">Suplementos</button>
+            <button class="filter-btn" data-filter="salud">Salud</button>
+        </div>
+
+        <div class="blog-grid">
+            <article class="blog-card" data-category="entrenamiento">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=250&fit=crop&auto=format&q=80" 
+                         alt="Entrenamiento de fuerza" loading="lazy">
+                    <div class="card-badge">Nuevo</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="category">Entrenamiento</span>
+                        <span class="date">16 Sep 2024</span>
+                        <span class="read-time">8 min</span>
+                    </div>
+                    <h3>La Ciencia del Entrenamiento de Fuerza: Meta-Análisis 2024</h3>
+                    <p>Análisis de +50 estudios sobre periodización, volumen óptimo y frecuencia de entrenamiento para maximizar hipertrofia y fuerza.</p>
+                    <div class="article-tags">
+                        <span class="tag">Meta-análisis</span>
+                        <span class="tag">50+ estudios</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="nutricion">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=250&fit=crop&auto=format&q=80" 
+                         alt="Nutrición deportiva" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="category">Nutrición</span>
+                        <span class="date">14 Sep 2024</span>
+                        <span class="read-time">6 min</span>
+                    </div>
+                    <h3>Mito de la Ventana Anabólica: ¿Realidad o Marketing?</h3>
+                    <p>Revisión sistemática sobre el timing de nutrientes post-ejercicio y su impacto real en la síntesis proteica.</p>
+                    <div class="article-tags">
+                        <span class="tag">Revisión sistemática</span>
+                        <span class="tag">Timing</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="suplementos">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=250&fit=crop&auto=format&q=80" 
+                         alt="Suplementos evidencia científica" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="category">Suplementos</span>
+                        <span class="date">12 Sep 2024</span>
+                        <span class="read-time">10 min</span>
+                    </div>
+                    <h3>Jerarquía de Suplementos: Qué Funciona Realmente</h3>
+                    <p>Clasificación basada en evidencia de suplementos deportivos, desde los esenciales hasta los experimentales.</p>
+                    <div class="article-tags">
+                        <span class="tag">Evidencia A+</span>
+                        <span class="tag">Jerarquía</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card" data-category="salud">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68e71?w=400&h=250&fit=crop&auto=format&q=80" 
+                         alt="Ejercicio salud mental" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="category">Salud</span>
+                        <span class="date">10 Sep 2024</span>
+                        <span class="read-time">7 min</span>
+                    </div>
+                    <h3>Ejercicio como Medicina: Prescripción Basada en Evidencia</h3>
+                    <p>Cómo el ejercicio puede ser tan efectivo como medicamentos para tratar depresión, ansiedad y enfermedades crónicas.</p>
+                    <div class="article-tags">
+                        <span class="tag">Medicina</span>
+                        <span class="tag">RCT</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Chatbot Modal -->
+<div id="chatbotModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>🤖 Asistente FitnessPro</h3>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div id="chatMessages" class="chat-messages">
+                <div class="bot-message">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <p>¡Hola! Soy tu asistente personalizado de fitness.</p>
+                        <p>Te haré 8 preguntas para crear tu plan completo de entrenamiento y suplementación.</p>
+                        <p>Al final, recibirás un PDF personalizado con:</p>
+                        <ul>
+                            <li>✅ Rutina de entrenamiento específica</li>
+                            <li>✅ Recomendaciones de suplementos</li>
+                            <li>✅ Plan nutricional básico</li>
+                            <li>✅ Seguimiento y progresión</li>
+                        </ul>
+                        <button class="btn btn--primary" onclick="startChat()">¡Comenzar Cuestionario!</button>
+                    </div>
+                </div>
+            </div>
+            <div id="chatInput" class="chat-input" style="display: none;">
+                <input type="text" id="userInput" placeholder="Escribe tu respuesta...">
+                <button onclick="sendMessage()" class="btn btn--primary">Enviar</button>
+            </div>
+            <div class="chat-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+                <span class="progress-text" id="progressText">Paso 1 de 8</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Resources Section -->
+<section id="recursos" class="section resources-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Recursos Gratuitos</h2>
+            <p class="section-subtitle">Herramientas y guías descargables basadas en ciencia</p>
+        </div>
+
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="resource-icon">📋</div>
+                <h3>Plantillas de Entrenamiento</h3>
+                <p>5 rutinas completas con progresión para todos los niveles</p>
+                <div class="resource-features">
+                    <span>✅ PDF descargable</span>
+                    <span>✅ 12 semanas de progresión</span>
+                    <span>✅ Videos explicativos</span>
+                </div>
+                <button class="btn btn--outline">📥 Descargar Gratis</button>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-icon">🥗</div>
+                <h3>Calculadora de Macros</h3>
+                <p>Calcula tus necesidades nutricionales personalizadas</p>
+                <div class="resource-features">
+                    <span>✅ Basado en fórmulas científicas</span>
+                    <span>✅ Ajustes por actividad</span>
+                    <span>✅ Objetivos específicos</span>
+                </div>
+                <button class="btn btn--outline">🧮 Usar Calculadora</button>
+            </div>
+
+            <div class="resource-card">
+                <div class="resource-icon">💊</div>
+                <h3>Guía de Suplementación</h3>
+                <p>Ebook completo con jerarquía basada en evidencia</p>
+                <div class="resource-features">
+                    <span>✅ 50+ páginas</span>
+                    <span>✅ Referencias científicas</span>
+                    <span>✅ Dosificaciones exactas</span>
+                </div>
+                <button class="btn btn--outline">📚 Descargar Ebook</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="contacto" class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>💪 FitnessPro</h3>
+                <p>Información fitness basada en evidencia científica para optimizar tu salud y rendimiento.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="YouTube">📺</a>
+                    <a href="#" aria-label="TikTok">🎵</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contenido</h4>
+                <ul>
                     <li><a href="#suplementos">Suplementos</a></li>
                     <li><a href="#salud">Salud</a></li>
                     <li><a href="#blog">Blog</a></li>
                     <li><a href="#recursos">Recursos</a></li>
-                    <li><a href="#sobre-mi">Sobre Mí</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
                 </ul>
-                <button class="btn btn--primary chatbot-trigger" id="chatbotBtn">
-                    🤖 Chatbot
-                </button>
-                <div class="mobile-menu-toggle" id="mobileToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Términos de Uso</a></li>
+                    <li><a href="#">Disclaimer Médico</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
             </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="hero-bg-animation"></div>
-        <div class="container">
-            <div class="hero-content fade-in">
-                <h1 class="hero-title">
-                    Transforma Tu Cuerpo, 
-                    <span class="highlight">Transforma Tu Vida</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Descubre planes de entrenamiento personalizados, guías de suplementación científicamente respaldadas y recursos gratuitos para alcanzar tus objetivos fitness.
-                </p>
-                <div class="hero-cta">
-                    <button class="btn btn--primary btn--lg chatbot-trigger">
-                        🚀 Prueba el Chatbot y Recibe tu Plan en PDF
-                    </button>
-                    <a href="#blog" class="btn btn--secondary btn--lg">
-                        📚 Explorar Artículos
-                    </a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number counter" data-target="10000">0</span>
-                        <span class="stat-label">Usuarios Activos</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number counter" data-target="500">0</span>
-                        <span class="stat-label">Artículos</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number counter" data-target="95">0</span>
-                        <span class="stat-label">% Satisfacción</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Stats from WHO -->
-    <section class="quick-stats">
-        <div class="container">
-            <div class="stats-grid fade-in-up">
-                <div class="stat-card">
-                    <div class="stat-icon">⚠️</div>
-                    <h3>31%</h3>
-                    <p>de adultos no hacen suficiente ejercicio según la OMS</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">📊</div>
-                    <h3>30%</h3>
-                    <p>reducción del riesgo de muerte con ejercicio regular</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">👥</div>
-                    <h3>80%</h3>
-                    <p>de adolescentes son físicamente inactivos</p>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">💯</div>
-                    <h3>+500</h3>
-                    <p>beneficios científicamente probados del ejercicio</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- User Type Selector -->
-    <section class="user-selector">
-        <div class="container">
-            <h2 class="section-title fade-in">¿Qué tipo de persona eres?</h2>
-            <p class="section-subtitle fade-in">Personaliza tu experiencia según tus objetivos</p>
-            <div class="user-types-grid fade-in-up">
-                <div class="user-type-card" data-user="principiante">
-                    <div class="user-icon">🌱</div>
-                    <h3>Principiante</h3>
-                    <p>Empezando tu viaje fitness</p>
-                    <ul>
-                        <li>Rutinas básicas</li>
-                        <li>Fundamentos nutricionales</li>
-                        <li>Suplementos esenciales</li>
-                    </ul>
-                </div>
-                <div class="user-type-card" data-user="intermedio">
-                    <div class="user-icon">💪</div>
-                    <h3>Intermedio</h3>
-                    <p>Buscas optimizar resultados</p>
-                    <ul>
-                        <li>Rutinas avanzadas</li>
-                        <li>Periodización</li>
-                        <li>Stack de suplementos</li>
-                    </ul>
-                </div>
-                <div class="user-type-card" data-user="avanzado">
-                    <div class="user-icon">🏆</div>
-                    <h3>Avanzado</h3>
-                    <p>Maximizando tu potencial</p>
-                    <ul>
-                        <li>Técnicas especializadas</li>
-                        <li>Competición</li>
-                        <li>Suplementación avanzada</li>
-                    </ul>
-                </div>
-                <div class="user-type-card" data-user="salud">
-                    <div class="user-icon">❤️</div>
-                    <h3>Salud General</h3>
-                    <p>Bienestar y calidad de vida</p>
-                    <ul>
-                        <li>Ejercicio terapéutico</li>
-                        <li>Prevención enfermedades</li>
-                        <li>Suplementos wellness</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Supplements Section -->
-    <section id="suplementos" class="section supplements-section">
-        <div class="container">
-            <h2 class="section-title fade-in">Guía de Suplementos Esenciales</h2>
-            <p class="section-subtitle fade-in">Basada en evidencia científica y estudios peer-reviewed</p>
-            
-            <div class="supplements-grid fade-in-up">
-                <article class="supplement-card">
-                    <div class="supplement-image">
-                        <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=300&h=200&fit=crop" alt="Creatina" loading="lazy">
-                    </div>
-                    <div class="supplement-content">
-                        <div class="supplement-icon">💊</div>
-                        <h3>Creatina Monohidrato</h3>
-                        <p class="supplement-summary">El suplemento más estudiado y efectivo para mejorar el rendimiento en ejercicios de alta intensidad.</p>
-                        
-                        <div class="supplement-benefits">
-                            <h4>Beneficios Principales:</h4>
-                            <ul>
-                                <li>Aumenta la fuerza y potencia muscular</li>
-                                <li>Mejora el rendimiento en ejercicios explosivos</li>
-                                <li>Acelera la recuperación entre series</li>
-                                <li>Puede mejorar la función cognitiva</li>
-                                <li>Aumenta la masa muscular magra</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="supplement-dosage">
-                            <div class="dosage-item">
-                                <strong>Dosis:</strong> 5g diarios
-                            </div>
-                            <div class="dosage-item">
-                                <strong>Timing:</strong> Cualquier momento del día
-                            </div>
-                            <div class="dosage-item">
-                                <strong>Ciclo:</strong> No es necesario ciclar
-                            </div>
-                        </div>
-                        
-                        <div class="supplement-evidence">
-                            <span class="evidence-badge">+700 estudios</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="supplement-card">
-                    <div class="supplement-image">
-                        <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=300&h=200&fit=crop" alt="Proteína Whey" loading="lazy">
-                    </div>
-                    <div class="supplement-content">
-                        <div class="supplement-icon">🥛</div>
-                        <h3>Proteína Whey</h3>
-                        <p class="supplement-summary">Proteína completa de alta calidad con todos los aminoácidos esenciales para el crecimiento muscular.</p>
-                        
-                        <div class="supplement-benefits">
-                            <h4>Beneficios Principales:</h4>
-                            <ul>
-                                <li>Promueve el crecimiento muscular</li>
-                                <li>Mejora la recuperación post-entrenamiento</li>
-                                <li>Reduce la presión arterial</li>
-                                <li>Ayuda en el control del peso</li>
-                                <li>Mejora la saciedad</li>
-                                <li>Propiedades antiinflamatorias</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="supplement-dosage">
-                            <div class="dosage-item">
-                                <strong>Dosis:</strong> 25-50g por porción
-                            </div>
-                            <div class="dosage-item">
-                                <strong>Timing:</strong> Post-entrenamiento o entre comidas
-                            </div>
-                            <div class="dosage-item">
-                                <strong>Tipo:</strong> Aislado o concentrado
-                            </div>
-                        </div>
-                        
-                        <div class="supplement-evidence">
-                            <span class="evidence-badge">Grado A evidencia</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="supplement-card">
-                    <div class="supplement-image">
-                        <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=300&h=200&fit=crop" alt="Omega-3" loading="lazy">
-                    </div>
-                    <div class="supplement-content">
-                        <div class="supplement-icon">🐟</div>
-                        <h3>Omega-3 (EPA/DHA)</h3>
-                        <p class="supplement-summary">Ácidos grasos esenciales para múltiples funciones corporales, desde salud cardiovascular hasta función cerebral.</p>
-                        
-                        <div class="supplement-benefits">
-                            <h4>Beneficios Principales:</h4>
-                            <ul>
-                                <li>Mejora la salud cardiovascular</li>
-                                <li>Reduce la inflamación sistémica</li>
-                                <li>Apoya la función cerebral y memoria</li>
-                                <li>Ayuda en la recuperación muscular</li>
-                                <li>Mejora la salud articular</li>
-                                <li>Reduce triglicéridos</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="supplement-dosage">
-                            <div class="dosage-item">
-                                <strong>Dosis:</strong> 1-3g EPA/DHA combinados
-                            </div>
-                            <div class="dosage-item">
-                                <strong>Timing:</strong> Con las comidas
-                            </div>
-                            <div class="dosage-item">
-                                <strong>Fuente:</strong> Aceite de pescado o algas
-                            </div>
-                        </div>
-                        
-                        <div class="supplement-evidence">
-                            <span class="evidence-badge">FDA aprobado</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="supplement-card">
-                    <div class="supplement-image">
-                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=300&h=200&fit=crop" alt="Cafeína" loading="lazy">
-                    </div>
-                    <div class="supplement-content">
-                        <div class="supplement-icon">☕</div>
-                        <h3>Cafeína</h3>
-                        <p class="supplement-summary">El estimulante más consumido mundialmente y uno de los ergogénicos más efectivos para rendimiento.</p>
-                        
-                        <div class="supplement-benefits">
-                            <h4>Beneficios Principales:</h4>
-                            <ul>
-                                <li>Mejora el estado de alerta y concentración</li>
-                                <li>Aumenta el rendimiento físico</li>
-                                <li>Acelera la quema de grasa</li>
-                                <li>Reduce la percepción del esfuerzo</li>
-                                <li>Mejora la resistencia aeróbica</li>
-                                <li>Efectos neuroprotectores</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="supplement-dosage">
-                            <div class="dosage-item">
-                                <strong>Dosis:</strong> 3-6mg/kg peso corporal
-                            </div>
-                            <div class="dosage-item">
-                                <strong>Timing:</strong> 30-60min pre-entreno
-                            </div>
-                            <div class="dosage-item">
-                                <strong>Límite:</strong> No exceder 400mg/día
-                            </div>
-                        </div>
-                        
-                        <div class="supplement-evidence">
-                            <span class="evidence-badge">IOC aprobado</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Myths & Facts -->
-            <div class="myths-section fade-in-up">
-                <h3>🔍 Mitos y Realidades sobre Suplementos</h3>
-                <div class="myths-grid">
-                    <div class="myth-card">
-                        <div class="myth-icon">❌</div>
-                        <h4>MITO</h4>
-                        <p>"Los suplementos son peligrosos y no regulados"</p>
-                        <div class="myth-reality">
-                            <div class="reality-icon">✅</div>
-                            <h4>REALIDAD</h4>
-                            <p>Los suplementos de calidad pasan controles estrictos y son seguros cuando se usan correctamente.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="myth-card">
-                        <div class="myth-icon">❌</div>
-                        <h4>MITO</h4>
-                        <p>"La proteína en polvo daña los riñones"</p>
-                        <div class="myth-reality">
-                            <div class="reality-icon">✅</div>
-                            <h4>REALIDAD</h4>
-                            <p>En personas sanas, no existe evidencia de daño renal por consumo normal de proteína.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Health Benefits Section -->
-    <section id="salud" class="section health-section">
-        <div class="container">
-            <h2 class="section-title fade-in">Beneficios Integrales del Ejercicio Físico</h2>
-            <p class="section-subtitle fade-in">Respaldados por la Organización Mundial de la Salud y estudios científicos</p>
-
-            <div class="health-categories fade-in-up">
-                <div class="health-category">
-                    <div class="category-header">
-                        <div class="category-icon">💪</div>
-                        <h3>Beneficios Físicos</h3>
-                    </div>
-                    <div class="category-image">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop" alt="Ejercicio físico" loading="lazy">
-                    </div>
-                    <ul class="benefits-list">
-                        <li><strong>Sistema Cardiovascular:</strong> Reduce riesgo de cardiopatías en 35%</li>
-                        <li><strong>Densidad Ósea:</strong> Previene osteoporosis y fracturas</li>
-                        <li><strong>Masa Muscular:</strong> Mantiene y construye músculo magro</li>
-                        <li><strong>Flexibilidad:</strong> Mejora movilidad articular</li>
-                        <li><strong>Sistema Inmune:</strong> Fortalece defensas naturales</li>
-                        <li><strong>Control de Peso:</strong> Aumenta gasto calórico y metabolismo</li>
-                    </ul>
-                </div>
-
-                <div class="health-category">
-                    <div class="category-header">
-                        <div class="category-icon">🧠</div>
-                        <h3>Beneficios Mentales</h3>
-                    </div>
-                    <div class="category-image">
-                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68e71?w=400&h=250&fit=crop" alt="Salud mental" loading="lazy">
-                    </div>
-                    <ul class="benefits-list">
-                        <li><strong>Reducción del Estrés:</strong> Disminuye cortisol en 23%</li>
-                        <li><strong>Estado de Ánimo:</strong> Libera endorfinas naturales</li>
-                        <li><strong>Autoestima:</strong> Mejora percepción corporal</li>
-                        <li><strong>Calidad del Sueño:</strong> Optimiza ciclos circadianos</li>
-                        <li><strong>Depresión:</strong> Tan efectivo como algunos antidepresivos</li>
-                        <li><strong>Función Cognitiva:</strong> Mejora memoria y concentración</li>
-                    </ul>
-                </div>
-
-                <div class="health-category">
-                    <div class="category-header">
-                        <div class="category-icon">🛡️</div>
-                        <h3>Prevención de Enfermedades</h3>
-                    </div>
-                    <div class="category-image">
-                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=250&fit=crop" alt="Prevención enfermedades" loading="lazy">
-                    </div>
-                    <ul class="benefits-list">
-                        <li><strong>Diabetes Tipo 2:</strong> Reduce riesgo en 42%</li>
-                        <li><strong>Cáncer:</strong> Disminuye riesgo de múltiples tipos</li>
-                        <li><strong>Hipertensión:</strong> Reduce presión arterial sistólica</li>
-                        <li><strong>Accidente Cerebrovascular:</strong> 25% menos probabilidad</li>
-                        <li><strong>Demencia:</strong> Protección neuroprotectora</li>
-                        <li><strong>Longevidad:</strong> Añade 3-7 años de vida saludable</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Interactive Health Calculator -->
-            <div class="health-calculator fade-in-up">
-                <h3>🧮 Calculadora de Beneficios Personalizados</h3>
-                <div class="calculator-form">
-                    <div class="form-group">
-                        <label>Minutos de ejercicio por semana:</label>
-                        <input type="range" id="exerciseMinutes" min="0" max="300" value="150">
-                        <span id="minutesDisplay">150 min</span>
-                    </div>
-                    <div class="calculator-results">
-                        <div class="result-item">
-                            <span class="result-label">Reducción riesgo cardiovascular:</span>
-                            <span class="result-value" id="cardioRisk">20%</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="result-label">Años de vida añadidos:</span>
-                            <span class="result-value" id="lifeYears">2.5 años</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- WHO Guidelines -->
-            <div class="who-guidelines fade-in-up">
-                <h3>📋 Recomendaciones OMS 2023</h3>
-                <div class="guidelines-grid">
-                    <div class="guideline-card">
-                        <h4>Adultos (18-64 años)</h4>
-                        <ul>
-                            <li>150-300 min actividad moderada/semana</li>
-                            <li>75-150 min actividad vigorosa/semana</li>
-                            <li>2+ días entrenamiento de fuerza/semana</li>
-                        </ul>
-                    </div>
-                    <div class="guideline-card">
-                        <h4>Adultos Mayores (65+ años)</h4>
-                        <ul>
-                            <li>Mismas recomendaciones que adultos</li>
-                            <li>+ ejercicios de equilibrio</li>
-                            <li>+ actividades de flexibilidad</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section id="blog" class="section blog-section">
-        <div class="container">
-            <h2 class="section-title fade-in">Blog de Fitness y Salud</h2>
-            <p class="section-subtitle fade-in">Artículos actualizados con la última evidencia científica</p>
-
-            <!-- Blog Categories Filter -->
-            <div class="blog-filters fade-in">
-                <button class="filter-btn active" data-category="todos">Todos</button>
-                <button class="filter-btn" data-category="entrenamiento">Entrenamiento</button>
-                <button class="filter-btn" data-category="nutricion">Nutrición</button>
-                <button class="filter-btn" data-category="suplementos">Suplementos</button>
-                <button class="filter-btn" data-category="bienestar">Bienestar</button>
-                <button class="filter-btn" data-category="principiantes">Principiantes</button>
-            </div>
-
-            <!-- Featured Article -->
-            <article class="featured-article fade-in-up">
-                <div class="article-image">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=300&fit=crop" alt="Artículo destacado" loading="lazy">
-                    <span class="featured-badge">Destacado</span>
-                </div>
-                <div class="article-content">
-                    <div class="article-meta">
-                        <span class="category">Entrenamiento</span>
-                        <span class="date">15 Sep 2024</span>
-                        <span class="read-time">8 min lectura</span>
-                    </div>
-                    <h3>La Ciencia del Entrenamiento de Fuerza: Guía Completa 2024</h3>
-                    <p>Descubre los principios científicos detrás del entrenamiento de fuerza más efectivo, incluyendo periodización, selección de ejercicios y progresión óptima para maximizar ganancias de músculo y fuerza.</p>
-                    <div class="article-highlights">
-                        <span class="highlight-tag">Evidencia A</span>
-                        <span class="highlight-tag">+20 estudios</span>
-                        <span class="highlight-tag">Peer-reviewed</span>
-                    </div>
-                    <a href="#article1" class="read-more-btn">Leer Artículo Completo →</a>
-                </div>
-            </article>
-
-            <!-- Blog Grid -->
-            <div class="blog-grid fade-in-up">
-                <article class="blog-card" data-category="principiantes">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=200&fit=crop" alt="Principiantes gimnasio" loading="lazy">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="category">Principiantes</span>
-                            <span class="date">12 Sep 2024</span>
-                        </div>
-                        <h3>Guía Completa para Principiantes en el Gimnasio</h3>
-                        <p>Todo lo que necesitas saber para empezar tu viaje fitness: desde la primera visita al gimnasio hasta crear rutinas efectivas.</p>
-                        <div class="card-highlights">
-                            <span>✅ Rutinas básicas</span>
-                            <span>✅ Técnica correcta</span>
-                            <span>✅ Equipamiento esencial</span>
-                        </div>
-                        <a href="#article2" class="card-link">Leer más →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card" data-category="entrenamiento">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=200&fit=crop" alt="Ejercicios compuestos" loading="lazy">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="category">Entrenamiento</span>
-                            <span class="date">10 Sep 2024</span>
-                        </div>
-                        <h3>Los 5 Ejercicios Más Efectivos para Construir Músculo</h3>
-                        <p>Análisis científico de los ejercicios compuestos fundamentales que deberían formar la base de cualquier rutina de musculación.</p>
-                        <div class="card-highlights">
-                            <span>💪 Ejercicios compuestos</span>
-                            <span>📊 Análisis EMG</span>
-                            <span>🎯 Máxima eficiencia</span>
-                        </div>
-                        <a href="#article3" class="card-link">Leer más →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card" data-category="nutricion">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=200&fit=crop" alt="Nutrición deportiva" loading="lazy">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="category">Nutrición</span>
-                            <span class="date">8 Sep 2024</span>
-                        </div>
-                        <h3>Nutrición Pre y Post Entrenamiento: La Guía Definitiva</h3>
-                        <p>Optimiza tus resultados con estrategias nutricionales basadas en evidencia para maximizar rendimiento y recuperación.</p>
-                        <div class="card-highlights">
-                            <span>⏰ Timing óptimo</span>
-                            <span>🥗 Macronutrientes</span>
-                            <span>💧 Hidratación</span>
-                        </div>
-                        <a href="#article4" class="card-link">Leer más →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card" data-category="suplementos">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop" alt="Suplementos deportivos" loading="lazy">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="category">Suplementos</span>
-                            <span class="date">5 Sep 2024</span>
-                        </div>
-                        <h3>Stack de Suplementos para Principiantes: Qué Funciona Realmente</h3>
-                        <p>Análisis objetivo de los suplementos más efectivos para quienes empiezan, priorizando evidencia científica sobre marketing.</p>
-                        <div class="card-highlights">
-                            <span>🔬 Evidencia científica</span>
-                            <span>💰 Relación costo-beneficio</span>
-                            <span>📋 Lista priorizada</span>
-                        </div>
-                        <a href="#article5" class="card-link">Leer más →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card" data-category="bienestar">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68e71?w=400&h=200&fit=crop" alt="Salud mental ejercicio" loading="lazy">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="category">Bienestar</span>
-                            <span class="date">3 Sep 2024</span>
-                        </div>
-                        <h3>Ejercicio y Salud Mental: Más Allá del Cuerpo</h3>
-                        <p>Exploración profunda de cómo el ejercicio físico impacta positivamente en la salud mental, respaldado por neurociencia.</p>
-                        <div class="card-highlights">
-                            <span>🧠 Neuroplasticidad</span>
-                            <span>😊 Endorfinas</span>
-                            <span>💤 Calidad del sueño</span>
-                        </div>
-                        <a href="#article6" class="card-link">Leer más →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card" data-category="nutricion">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&h=200&fit=crop" alt="Dieta flexible" loading="lazy">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="category">Nutrición</span>
-                            <span class="date">1 Sep 2024</span>
-                        </div>
-                        <h3>Dieta Flexible vs Dietas Restrictivas: ¿Qué Dice la Ciencia?</h3>
-                        <p>Comparación objetiva entre enfoques nutricionales, analizando sostenibilidad, adherencia y resultados a largo plazo.</p>
-                        <div class="card-highlights">
-                            <span>📈 Adherencia</span>
-                            <span>⚖️ Sostenibilidad</span>
-                            <span>🎯 Resultados</span>
-                        </div>
-                        <a href="#article7" class="card-link">Leer más →</a>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Blog CTA -->
-            <div class="blog-cta fade-in-up">
-                <h3>¿Quieres más contenido como este?</h3>
-                <p>Suscríbete a nuestro newsletter y recibe artículos semanales directamente en tu email</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="tu@email.com" required>
-                    <button type="submit" class="btn btn--primary">Suscribirme</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resources Section -->
-    <section id="recursos" class="section resources-section">
-        <div class="container">
-            <h2 class="section-title fade-in">Recursos Gratuitos</h2>
-            <p class="section-subtitle fade-in">Herramientas y materiales descargables para acelerar tu progreso</p>
-
-            <div class="resources-grid fade-in-up">
-                <div class="resource-card">
-                    <div class="resource-icon">📋</div>
-                    <h3>Plan de Entrenamiento Principiantes</h3>
-                    <p>Rutina completa de 12 semanas con progresión y videos explicativos</p>
-                    <ul>
-                        <li>3 fases de progresión</li>
-                        <li>Videos de técnica</li>
-                        <li>Tracking sheet incluido</li>
-                    </ul>
-                    <a href="#" class="btn btn--secondary" download>📥 Descargar PDF</a>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-icon">🥗</div>
-                    <h3>Guía de Nutrición Deportiva</h3>
-                    <p>Manual completo con cálculo de macros y recetas saludables</p>
-                    <ul>
-                        <li>Calculadora de macros</li>
-                        <li>50+ recetas fitness</li>
-                        <li>Lista de compras</li>
-                    </ul>
-                    <a href="#" class="btn btn--secondary" download>📥 Descargar PDF</a>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-icon">💊</div>
-                    <h3>Ebook Suplementación</h3>
-                    <p>Guía completa de 100+ páginas sobre suplementos deportivos</p>
-                    <ul>
-                        <li>Evidencia científica</li>
-                        <li>Dosificaciones óptimas</li>
-                        <li>Interacciones y timing</li>
-                    </ul>
-                    <a href="#" class="btn btn--secondary" download>📥 Descargar PDF</a>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-icon">📱</div>
-                    <h3>App de Seguimiento</h3>
-                    <p>Aplicación gratuita para trackear entrenamientos y progreso</p>
-                    <ul>
-                        <li>Base de datos de ejercicios</li>
-                        <li>Gráficos de progreso</li>
-                        <li>Recordatorios inteligentes</li>
-                    </ul>
-                    <a href="#" class="btn btn--secondary">🔗 Acceder Online</a>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-icon">🧮</div>
-                    <h3>Calculadoras Fitness</h3>
-                    <p>Herramientas online para calcular TMB, macros, 1RM y más</p>
-                    <ul>
-                        <li>Calculadora TMB/TDEE</li>
-                        <li>Calculadora 1RM</li>
-                        <li>Calculadora de macros</li>
-                    </ul>
-                    <a href="#" class="btn btn--secondary">🔢 Usar Calculadoras</a>
-                </div>
-
-                <div class="resource-card">
-                    <div class="resource-icon">📚</div>
-                    <h3>Biblioteca de Ejercicios</h3>
-                    <p>Base de datos completa con 500+ ejercicios con videos</p>
-                    <ul>
-                        <li>Filtros por músculo</li>
-                        <li>Videos HD</li>
-                        <li>Variaciones progresivas</li>
-                    </ul>
-                    <a href="#" class="btn btn--secondary">📖 Explorar Biblioteca</a>
-                </div>
-            </div>
-
-            <!-- Newsletter Signup -->
-            <div class="newsletter-signup fade-in-up">
-                <h3>Newsletter FitnessPro</h3>
-                <p>Recibe contenido exclusivo, últimas investigaciones y recursos gratuitos cada semana</p>
-                <form class="newsletter-form-main">
-                    <div class="form-group">
-                        <input type="email" placeholder="Tu mejor email" required>
-                        <button type="submit" class="btn btn--primary">Suscribirme Gratis</button>
-                    </div>
-                    <p class="newsletter-benefits">
-                        ✅ Artículos exclusivos  ✅ Recursos gratuitos  ✅ Sin spam, cancelar cuando quieras
-                    </p>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Me Section -->
-    <section id="sobre-mi" class="section about-section">
-        <div class="container">
-            <div class="about-content fade-in-up">
-                <div class="about-text">
-                    <h2 class="section-title">Sobre FitnessPro</h2>
-                    <p class="about-intro">
-                        Hola, soy el creador de FitnessPro, una plataforma dedicada a proporcionar información fitness y de salud basada en evidencia científica.
-                    </p>
-                    <p>
-                        Con más de 5 años de experiencia en el mundo del fitness y formación en ciencias del deporte, mi objetivo es desmitificar la industria del fitness y proporcionar información honesta, práctica y respaldada por la ciencia.
-                    </p>
-                    <p>
-                        Creo firmemente que el fitness no debería ser complicado ni inaccesible. Por eso, todos los recursos en FitnessPro están diseñados para ser prácticos, fáciles de entender y, lo más importante, efectivos.
-                    </p>
-
-                    <div class="credentials">
-                        <h3>Credenciales y Formación:</h3>
-                        <ul>
-                            <li>🎓 Licenciado en Ciencias del Deporte</li>
-                            <li>🏋️ Certificado en Entrenamiento Personal (NSCA)</li>
-                            <li>📚 +100 horas de formación continua</li>
-                            <li>📊 Análisis de +1000 estudios científicos</li>
-                        </ul>
-                    </div>
-
-                    <div class="mission">
-                        <h3>Mi Misión:</h3>
-                        <p>
-                            Empoderar a las personas con conocimiento basado en evidencia para que tomen decisiones informadas sobre su salud y fitness, alejándose de modas pasajeras y marketing engañoso.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=500&fit=crop" alt="Entrenador personal" loading="lazy">
-                    <div class="about-stats">
-                        <div class="stat">
-                            <span class="number">10k+</span>
-                            <span class="label">Lectores mensuales</span>
-                        </div>
-                        <div class="stat">
-                            <span class="number">500+</span>
-                            <span class="label">Artículos publicados</span>
-                        </div>
-                        <div class="stat">
-                            <span class="number">95%</span>
-                            <span class="label">Satisfacción usuarios</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Disclaimer -->
-            <div class="disclaimer fade-in-up">
-                <h3>⚠️ Disclaimer Importante</h3>
-                <div class="disclaimer-content">
-                    <p>
-                        <strong>Información Educativa:</strong> Todo el contenido de FitnessPro es únicamente para fines informativos y educativos. No sustituye el consejo médico, diagnóstico o tratamiento profesional.
-                    </p>
-                    <p>
-                        <strong>Consulta Profesional:</strong> Siempre consulta con un profesional de la salud antes de comenzar cualquier programa de ejercicios o cambios en tu dieta, especialmente si tienes condiciones médicas preexistentes.
-                    </p>
-                    <p>
-                        <strong>Responsabilidad:</strong> El uso de la información proporcionada es bajo tu propia responsabilidad. FitnessPro no se hace responsable de lesiones o problemas de salud derivados del uso de esta información.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chatbot Modal -->
-    <div id="chatbotModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>🤖 Asistente FitnessPro</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div id="chatHistory" class="chat-history">
-                    <div class="bot-message">
-                        <p>¡Hola! 👋 Soy tu asistente personal de fitness. Te haré algunas preguntas para crear tu plan personalizado.</p>
-                        <p>¿Listo para empezar?</p>
-                        <button onclick="startQuestionnaire()" class="btn btn--primary">¡Empezar!</button>
-                    </div>
-                </div>
-                <div id="chatInput" class="chat-input" style="display: none;">
-                    <input type="text" id="userInput" placeholder="Escribe tu respuesta...">
-                    <button onclick="sendMessage()" class="btn btn--primary">Enviar</button>
-                </div>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 FitnessPro. Contenido educativo únicamente. Consulta profesionales de la salud.</p>
         </div>
     </div>
+</footer>
 
-    <!-- Contact Section -->
-    <section id="contacto" class="section contact-section">
-        <div class="container">
-            <h2 class="section-title fade-in">Conecta Conmigo</h2>
-            <p class="section-subtitle fade-in">¿Tienes preguntas o sugerencias? ¡Me encantaría escucharte!</p>
+<!-- Back to Top -->
+<button id="backToTop" class="back-to-top">⬆️</button>
 
-            <div class="contact-grid fade-in-up">
-                <div class="contact-info">
-                    <h3>Información de Contacto</h3>
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>hola@fitnesspro.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <h4>Redes Sociales</h4>
-                            <div class="social-links">
-                                <a href="#" aria-label="Instagram">📷 Instagram</a>
-                                <a href="#" aria-label="YouTube">📺 YouTube</a>
-                                <a href="#" aria-label="TikTok">🎵 TikTok</a>
-                                <a href="#" aria-label="Twitter">🐦 Twitter</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">⏰</div>
-                        <div>
-                            <h4>Tiempo de Respuesta</h4>
-                            <p>24-48 horas laborables</p>
-                        </div>
-                    </div>
-                </div>
-
-                <form class="contact-form">
-                    <h3>Envíame un Mensaje</h3>
-                    <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Asunto</label>
-                        <select id="subject" name="subject" required>
-                            <option value="">Selecciona un tema</option>
-                            <option value="consulta">Consulta General</option>
-                            <option value="sugerencia">Sugerencia de Artículo</option>
-                            <option value="colaboracion">Colaboración</option>
-                            <option value="error">Reportar Error</option>
-                            <option value="otro">Otro</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Mensaje</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn--primary btn--lg">Enviar Mensaje</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>💪 FitnessPro</h3>
-                    <p>Tu guía completa hacia un estilo de vida más saludable y activo, basada en evidencia científica.</p>
-                    <div class="footer-social">
-                        <a href="#" aria-label="Instagram">📷</a>
-                        <a href="#" aria-label="YouTube">📺</a>
-                        <a href="#" aria-label="TikTok">🎵</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Contenido</h4>
-                    <ul>
-                        <li><a href="#suplementos">Suplementos</a></li>
-                        <li><a href="#salud">Beneficios del Ejercicio</a></li>
-                        <li><a href="#blog">Blog</a></li>
-                        <li><a href="#recursos">Recursos Gratuitos</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Herramientas</h4>
-                    <ul>
-                        <li><a href="#">Calculadoras Fitness</a></li>
-                        <li><a href="#">Chatbot</a></li>
-                        <li><a href="#">Biblioteca de Ejercicios</a></li>
-                        <li><a href="#">App de Seguimiento</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Política de Privacidad</a></li>
-                        <li><a href="#">Términos de Uso</a></li>
-                        <li><a href="#">Política de Cookies</a></li>
-                        <li><a href="#">Disclaimer de Salud</a></li>
-                        <li><a href="#">Contacto</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2024 FitnessPro. Todos los derechos reservados.</p>
-                <p>Información con fines educativos únicamente. Consulta siempre con profesionales de la salud.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Volver arriba">⬆️</button>
-
-    <script src="app.js"></script>
-</body>
-</html>
+<script src="app.js"></script>
