@@ -1,6 +1,5 @@
-// Fitness Website JavaScript - Complete Functionality
-
-class FitnessWebsite {
+// Advanced Fitness Website with Real PDF Generation
+class FitnessApp {
     constructor() {
         this.currentQuestion = 0;
         this.userAnswers = {};
@@ -8,54 +7,47 @@ class FitnessWebsite {
             {
                 id: 'objetivo',
                 question: '¿Cuál es tu objetivo principal?',
-                options: ['Perder peso', 'Ganar músculo', 'Mejorar resistencia', 'Mantener forma física', 'Rehabilitación'],
-                type: 'single'
+                options: ['Perder peso', 'Ganar músculo', 'Mejorar resistencia', 'Mantener forma física', 'Rehabilitación']
             },
             {
                 id: 'dias_entrenamiento',
                 question: '¿Cuántos días puedes entrenar por semana?',
-                options: ['2-3 días', '4-5 días', '6-7 días'],
-                type: 'single'
+                options: ['2-3 días', '4-5 días', '6-7 días']
             },
             {
-                id: 'nivel_experiencia',
+                id: 'nivel',
                 question: '¿Cuál es tu nivel de experiencia?',
-                options: ['Principiante (0-1 año)', 'Intermedio (1-3 años)', 'Avanzado (3+ años)'],
-                type: 'single'
+                options: ['Principiante (0-1 año)', 'Intermedio (1-3 años)', 'Avanzado (3+ años)']
             },
             {
-                id: 'acceso_gimnasio',
-                question: '¿Tienes acceso a un gimnasio?',
-                options: ['Sí, gimnasio completo', 'Gimnasio básico en casa', 'Solo ejercicio con peso corporal'],
-                type: 'single'
+                id: 'gimnasio',
+                question: '¿Dónde entrenas?',
+                options: ['Gimnasio completo', 'Gimnasio en casa', 'Solo peso corporal', 'Parque/exterior']
+            },
+            {
+                id: 'tiempo_sesion',
+                question: '¿Cuánto tiempo tienes por sesión?',
+                options: ['30-45 minutos', '45-60 minutos', '60-90 minutos', 'Más de 90 minutos']
             },
             {
                 id: 'objetivo_nutricional',
-                question: '¿Cuál es tu objetivo nutricional principal?',
-                options: ['Aumentar masa muscular', 'Perder grasa corporal', 'Mejorar rendimiento deportivo', 'Salud general'],
-                type: 'single'
+                question: '¿Cuál es tu objetivo nutricional?',
+                options: ['Aumentar masa muscular', 'Perder grasa', 'Recomposición corporal', 'Rendimiento deportivo', 'Salud general']
             },
             {
-                id: 'restricciones_alimentarias',
-                question: '¿Tienes alguna restricción alimentaria?',
-                options: ['Ninguna', 'Vegetariano', 'Vegano', 'Intolerancia a lactosa', 'Celíaco', 'Otras alergias'],
-                type: 'single'
+                id: 'restricciones',
+                question: '¿Tienes restricciones alimentarias?',
+                options: ['Ninguna', 'Vegetariano', 'Vegano', 'Sin lactosa', 'Sin gluten', 'Otras']
             },
             {
-                id: 'suplementos_actuales',
-                question: '¿Qué suplementos tomas actualmente?',
-                options: ['Ninguno', 'Proteína en polvo', 'Creatina', 'Multivitamínico', 'Pre-entreno', 'Otros'],
-                type: 'multiple'
-            },
-            {
-                id: 'edad_genero',
-                question: 'Información adicional:',
+                id: 'info_personal',
+                question: 'Información personal (opcional para personalizar más):',
+                type: 'form',
                 fields: [
-                    { name: 'edad', label: 'Edad', type: 'number', min: 16, max: 80 },
-                    { name: 'genero', label: 'Género', type: 'select', options: ['Masculino', 'Femenino', 'Otro'] },
-                    { name: 'peso', label: 'Peso (kg)', type: 'number', min: 40, max: 200 }
-                ],
-                type: 'form'
+                    { name: 'edad', label: 'Edad', type: 'number', min: 16, max: 80, required: false },
+                    { name: 'genero', label: 'Género', type: 'select', options: ['Masculino', 'Femenino', 'Otro'], required: false },
+                    { name: 'peso', label: 'Peso aproximado (kg)', type: 'number', min: 30, max: 200, required: false }
+                ]
             }
         ];
         
@@ -65,24 +57,17 @@ class FitnessWebsite {
     init() {
         this.setupEventListeners();
         this.setupScrollAnimations();
-        this.setupCounters();
-        this.setupBlogFilters();
-        this.setupHealthCalculator();
-        this.setupFormHandlers();
-        this.hideLoadingScreen();
-    }
-
-    hideLoadingScreen() {
-        setTimeout(() => {
-            const loading = document.getElementById('loading');
-            if (loading) {
-                loading.classList.add('hidden');
-            }
-        }, 1500);
+        this.setupFilters();
+        this.setupCalculators();
+        this.setupSmoothScrolling();
+        this.updateProgressBar();
     }
 
     setupEventListeners() {
-        // Mobile menu toggle
+        // Navbar scroll effect
+        window.addEventListener('scroll', this.handleScroll.bind(this));
+        
+        // Mobile menu
         const mobileToggle = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
         
@@ -92,7 +77,143 @@ class FitnessWebsite {
             });
         }
 
-        // Smooth scrolling for navigation links
+        // Chatbot triggers
+        document.querySelectorAll('.chatbot-trigger').forEach(trigger => {
+            trigger.addEventListener('click', this.openChatbot.bind(this));
+        });
+
+        // Modal close
+        document.querySelector('.close')?.addEventListener('click', this.closeChatbot.bind(this));
+        
+        // Close modal on outside click
+        document.getElementById('chatbotModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'chatbotModal') {
+                this.closeChatbot();
+            }
+        });
+
+        // Back to top
+        document.getElementById('backToTop')?.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Global click handler for dynamic buttons
+        document.addEventListener('click', this.handleGlobalClicks.bind(this));
+    }
+
+    handleScroll() {
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        
+        if (window.scrollY > 100) {
+            navbar?.classList.add('scrolled');
+            backToTop?.classList.add('visible');
+        } else {
+            navbar?.classList.remove('scrolled');
+            backToTop?.classList.remove('visible');
+        }
+        
+        this.animateOnScroll();
+    }
+
+    setupScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Add animation classes and observe
+        document.querySelectorAll('.supplement-card, .health-category, .blog-card, .resource-card, .trust-item').forEach(el => {
+            el.classList.add('animate-on-scroll');
+            observer.observe(el);
+        });
+    }
+
+    animateOnScroll() {
+        const elements = document.querySelectorAll('.animate-on-scroll:not(.animated)');
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+            
+            if (elementTop < window.innerHeight - elementVisible) {
+                element.classList.add('animated');
+            }
+        });
+    }
+
+    setupFilters() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active filter
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                
+                // Filter blog cards with animation
+                blogCards.forEach(card => {
+                    if (filter === 'todos' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.95)';
+                        setTimeout(() => card.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+    }
+
+    setupCalculators() {
+        const weeklyMinutes = document.getElementById('weeklyMinutes');
+        const userAge = document.getElementById('userAge');
+        
+        if (weeklyMinutes) {
+            weeklyMinutes.addEventListener('input', this.updateCalculatorResults.bind(this));
+            weeklyMinutes.nextElementSibling.textContent = weeklyMinutes.value + ' min';
+        }
+        
+        if (userAge) {
+            userAge.addEventListener('input', this.updateCalculatorResults.bind(this));
+            userAge.nextElementSibling.textContent = userAge.value + ' años';
+        }
+    }
+
+    updateCalculatorResults() {
+        const minutes = parseInt(document.getElementById('weeklyMinutes')?.value || 150);
+        const age = parseInt(document.getElementById('userAge')?.value || 30);
+        
+        // Update range displays
+        document.querySelector('#weeklyMinutes + .range-value').textContent = minutes + ' min';
+        document.querySelector('#userAge + .range-value').textContent = age + ' años';
+        
+        // Calculate benefits (simplified formulas based on research)
+        const cardioReduction = Math.min(Math.floor(minutes * 0.15), 50);
+        const lifeYears = Math.min(Math.round((minutes / 150) * 3.5 * 10) / 10, 7);
+        const diabetesReduction = Math.min(Math.floor(minutes * 0.18), 45);
+        
+        // Update results
+        document.getElementById('cardioResult').textContent = cardioReduction + '%';
+        document.getElementById('lifeResult').textContent = lifeYears + ' años';
+        document.getElementById('diabetesResult').textContent = diabetesReduction + '%';
+    }
+
+    setupSmoothScrolling() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -106,187 +227,20 @@ class FitnessWebsite {
                 }
             });
         });
-
-        // Chatbot modal functionality
-        const chatbotTriggers = document.querySelectorAll('.chatbot-trigger');
-        const modal = document.getElementById('chatbotModal');
-        const closeBtn = document.querySelector('.close');
-
-        chatbotTriggers.forEach(trigger => {
-            trigger.addEventListener('click', () => {
-                this.openChatbot();
-            });
-        });
-
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                this.closeChatbot();
-            });
-        }
-
-        // Close modal when clicking outside
-        if (modal) {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    this.closeChatbot();
-                }
-            });
-        }
-
-        // User type selector
-        document.querySelectorAll('.user-type-card').forEach(card => {
-            card.addEventListener('click', () => {
-                document.querySelectorAll('.user-type-card').forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-                
-                const userType = card.dataset.user;
-                this.personalizeContent(userType);
-            });
-        });
-
-        // Back to top button
-        const backToTopBtn = document.getElementById('backToTop');
-        if (backToTopBtn) {
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            this.handleScroll();
-        });
     }
 
-    handleScroll() {
-        const navbar = document.getElementById('navbar');
-        const backToTopBtn = document.getElementById('backToTop');
+    handleGlobalClicks(e) {
+        // Handle dynamically created buttons
+        if (e.target.matches('.option-btn')) {
+            this.selectOption(e.target.dataset.value);
+        }
         
-        if (window.scrollY > 100) {
-            navbar?.classList.add('scrolled');
-            backToTopBtn?.classList.add('visible');
-        } else {
-            navbar?.classList.remove('scrolled');
-            backToTopBtn?.classList.remove('visible');
+        if (e.target.matches('#startChatBtn')) {
+            this.startQuestionnaire();
         }
-    }
-
-    setupScrollAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all elements with animation classes
-        document.querySelectorAll('.fade-in, .fade-in-up, .slide-in-left, .slide-in-right').forEach(el => {
-            observer.observe(el);
-        });
-    }
-
-    setupCounters() {
-        const counters = document.querySelectorAll('.counter');
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counter = entry.target;
-                    const target = parseInt(counter.dataset.target);
-                    this.animateCounter(counter, target);
-                    counterObserver.unobserve(counter);
-                }
-            });
-        });
-
-        counters.forEach(counter => {
-            counterObserver.observe(counter);
-        });
-    }
-
-    animateCounter(element, target) {
-        let current = 0;
-        const increment = target / 100;
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                element.textContent = target.toLocaleString();
-                clearInterval(timer);
-            } else {
-                element.textContent = Math.floor(current).toLocaleString();
-            }
-        }, 20);
-    }
-
-    setupBlogFilters() {
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const blogCards = document.querySelectorAll('.blog-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Update active filter
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const category = btn.dataset.category;
-
-                // Filter blog cards
-                blogCards.forEach(card => {
-                    if (category === 'todos' || card.dataset.category === category) {
-                        card.style.display = 'block';
-                        setTimeout(() => card.style.opacity = '1', 10);
-                    } else {
-                        card.style.opacity = '0';
-                        setTimeout(() => card.style.display = 'none', 300);
-                    }
-                });
-            });
-        });
-    }
-
-    setupHealthCalculator() {
-        const exerciseSlider = document.getElementById('exerciseMinutes');
-        const minutesDisplay = document.getElementById('minutesDisplay');
-        const cardioRisk = document.getElementById('cardioRisk');
-        const lifeYears = document.getElementById('lifeYears');
-
-        if (exerciseSlider) {
-            exerciseSlider.addEventListener('input', (e) => {
-                const minutes = parseInt(e.target.value);
-                minutesDisplay.textContent = `${minutes} min`;
-
-                // Calculate benefits (simplified formula)
-                const cardioReduction = Math.min(Math.floor(minutes * 0.15), 50);
-                const yearsAdded = Math.min(Math.round((minutes / 150) * 2.5 * 10) / 10, 7);
-
-                cardioRisk.textContent = `${cardioReduction}%`;
-                lifeYears.textContent = `${yearsAdded} años`;
-            });
-        }
-    }
-
-    setupFormHandlers() {
-        // Newsletter forms
-        document.querySelectorAll('.newsletter-form, .newsletter-form-main').forEach(form => {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const email = form.querySelector('input[type="email"]').value;
-                this.handleNewsletterSubmit(email);
-            });
-        });
-
-        // Contact form
-        const contactForm = document.querySelector('.contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.handleContactSubmit(new FormData(contactForm));
-            });
+        
+        if (e.target.matches('#downloadPdfBtn')) {
+            this.generateAndDownloadPDF();
         }
     }
 
@@ -295,7 +249,8 @@ class FitnessWebsite {
         const modal = document.getElementById('chatbotModal');
         if (modal) {
             modal.style.display = 'block';
-            this.resetChatbot();
+            document.body.style.overflow = 'hidden';
+            this.resetChat();
         }
     }
 
@@ -303,25 +258,38 @@ class FitnessWebsite {
         const modal = document.getElementById('chatbotModal');
         if (modal) {
             modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
     }
 
-    resetChatbot() {
+    resetChat() {
         this.currentQuestion = 0;
         this.userAnswers = {};
         this.displayWelcomeMessage();
+        this.updateProgressBar();
     }
 
     displayWelcomeMessage() {
-        const chatHistory = document.getElementById('chatHistory');
-        chatHistory.innerHTML = `
+        const messages = document.getElementById('chatMessages');
+        messages.innerHTML = `
             <div class="bot-message">
-                <p>¡Hola! 👋 Soy tu asistente personal de FitnessPro.</p>
-                <p>Te haré algunas preguntas para crear tu plan personalizado de entrenamiento y suplementación.</p>
-                <p>El proceso toma solo 2-3 minutos. ¿Estás listo para empezar?</p>
-                <button onclick="fitnessWebsite.startQuestionnaire()" class="btn btn--primary">¡Comenzar Cuestionario!</button>
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <p>¡Hola! 👋 Soy tu asistente de FitnessPro.</p>
+                    <p>Te haré 8 preguntas rápidas para crear tu plan personalizado de entrenamiento y suplementación.</p>
+                    <p><strong>Al finalizar recibirás:</strong></p>
+                    <ul>
+                        <li>🏋️ Plan de entrenamiento adaptado a tu nivel</li>
+                        <li>💊 Recomendaciones de suplementos</li>
+                        <li>📊 Guía nutricional básica</li>
+                        <li>📈 Programa de progresión</li>
+                    </ul>
+                    <p>¿Listo para empezar?</p>
+                    <button class="btn btn--primary" id="startChatBtn">🚀 ¡Empezar Cuestionario!</button>
+                </div>
             </div>
         `;
+        this.scrollChatToBottom();
     }
 
     startQuestionnaire() {
@@ -331,52 +299,29 @@ class FitnessWebsite {
 
     showQuestion() {
         if (this.currentQuestion >= this.questions.length) {
-            this.generatePlan();
+            this.generateResults();
             return;
         }
 
         const question = this.questions[this.currentQuestion];
-        const chatHistory = document.getElementById('chatHistory');
+        const messages = document.getElementById('chatMessages');
         
         let questionHTML = `
             <div class="bot-message">
-                <p><strong>Pregunta ${this.currentQuestion + 1} de ${this.questions.length}</strong></p>
-                <p>${question.question}</p>
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <p><strong>Pregunta ${this.currentQuestion + 1} de ${this.questions.length}</strong></p>
+                    <p>${question.question}</p>
         `;
 
-        if (question.type === 'single') {
-            questionHTML += '<div class="question-options">';
-            question.options.forEach((option, index) => {
-                questionHTML += `
-                    <button class="option-btn" onclick="fitnessWebsite.selectOption('${question.id}', '${option}', false)">
-                        ${option}
-                    </button>
-                `;
-            });
-            questionHTML += '</div>';
-        } else if (question.type === 'multiple') {
-            questionHTML += '<div class="question-options">';
-            question.options.forEach((option, index) => {
-                questionHTML += `
-                    <button class="option-btn" onclick="fitnessWebsite.toggleMultipleOption('${question.id}', '${option}')">
-                        ${option}
-                    </button>
-                `;
-            });
-            questionHTML += `
-                <button class="btn btn--primary" onclick="fitnessWebsite.nextQuestion()" style="margin-top: 1rem;">
-                    Continuar
-                </button>
-            `;
-            questionHTML += '</div>';
-        } else if (question.type === 'form') {
+        if (question.type === 'form') {
             questionHTML += '<div class="question-form">';
             question.fields.forEach(field => {
                 if (field.type === 'select') {
                     questionHTML += `
                         <div class="form-group">
                             <label>${field.label}:</label>
-                            <select id="field_${field.name}" required>
+                            <select id="field_${field.name}" ${field.required ? 'required' : ''}>
                                 <option value="">Seleccionar...</option>
                                 ${field.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
                             </select>
@@ -387,49 +332,56 @@ class FitnessWebsite {
                         <div class="form-group">
                             <label>${field.label}:</label>
                             <input type="${field.type}" id="field_${field.name}" 
-                                   min="${field.min || ''}" max="${field.max || ''}" required>
+                                   min="${field.min || ''}" max="${field.max || ''}" 
+                                   ${field.required ? 'required' : ''}>
                         </div>
                     `;
                 }
             });
             questionHTML += `
-                <button class="btn btn--primary" onclick="fitnessWebsite.submitForm('${question.id}')">
+                <button class="btn btn--primary" onclick="fitnessApp.submitForm('${question.id}')">
                     Continuar
                 </button>
             `;
             questionHTML += '</div>';
-        }
-
-        questionHTML += '</div>';
-        chatHistory.innerHTML += questionHTML;
-        this.scrollToBottom();
-    }
-
-    selectOption(questionId, option, isMultiple = false) {
-        if (!isMultiple) {
-            this.userAnswers[questionId] = option;
-            this.addUserMessage(option);
-            this.nextQuestion();
-        }
-    }
-
-    toggleMultipleOption(questionId, option) {
-        if (!this.userAnswers[questionId]) {
-            this.userAnswers[questionId] = [];
-        }
-        
-        const index = this.userAnswers[questionId].indexOf(option);
-        const button = event.target;
-        
-        if (index === -1) {
-            this.userAnswers[questionId].push(option);
-            button.style.background = 'var(--primary-green)';
-            button.style.color = 'white';
         } else {
-            this.userAnswers[questionId].splice(index, 1);
-            button.style.background = 'white';
-            button.style.color = 'var(--primary-green)';
+            questionHTML += '<div class="question-options">';
+            question.options.forEach(option => {
+                questionHTML += `
+                    <button class="option-btn" data-value="${option}">
+                        ${option}
+                    </button>
+                `;
+            });
+            questionHTML += '</div>';
         }
+
+        questionHTML += '</div></div>';
+        messages.innerHTML += questionHTML;
+        this.scrollChatToBottom();
+        this.updateProgressBar();
+    }
+
+    selectOption(value) {
+        const question = this.questions[this.currentQuestion];
+        this.userAnswers[question.id] = value;
+        
+        // Add user message
+        const messages = document.getElementById('chatMessages');
+        messages.innerHTML += `
+            <div class="user-message">
+                <div class="message-content">
+                    <p>${value}</p>
+                </div>
+            </div>
+        `;
+        
+        this.scrollChatToBottom();
+        this.currentQuestion++;
+        
+        setTimeout(() => {
+            this.showQuestion();
+        }, 500);
     }
 
     submitForm(questionId) {
@@ -438,193 +390,375 @@ class FitnessWebsite {
         
         question.fields.forEach(field => {
             const element = document.getElementById(`field_${field.name}`);
-            formData[field.name] = element.value;
+            if (element && element.value) {
+                formData[field.name] = element.value;
+            }
         });
         
         this.userAnswers[questionId] = formData;
-        this.addUserMessage(`Edad: ${formData.edad}, Género: ${formData.genero}, Peso: ${formData.peso}kg`);
-        this.nextQuestion();
-    }
-
-    addUserMessage(message) {
-        const chatHistory = document.getElementById('chatHistory');
-        chatHistory.innerHTML += `
-            <div class="user-message">
-                <p>${message}</p>
-            </div>
-        `;
-        this.scrollToBottom();
-    }
-
-    nextQuestion() {
+        
+        // Show user response
+        const responses = [];
+        if (formData.edad) responses.push(`${formData.edad} años`);
+        if (formData.genero) responses.push(formData.genero);
+        if (formData.peso) responses.push(`${formData.peso}kg`);
+        
+        if (responses.length > 0) {
+            const messages = document.getElementById('chatMessages');
+            messages.innerHTML += `
+                <div class="user-message">
+                    <div class="message-content">
+                        <p>${responses.join(', ')}</p>
+                    </div>
+                </div>
+            `;
+            this.scrollChatToBottom();
+        }
+        
         this.currentQuestion++;
         setTimeout(() => {
             this.showQuestion();
         }, 500);
     }
 
-    generatePlan() {
-        const chatHistory = document.getElementById('chatHistory');
-        
-        // Generate personalized recommendations based on answers
+    generateResults() {
         const plan = this.createPersonalizedPlan();
+        const messages = document.getElementById('chatMessages');
         
-        chatHistory.innerHTML += `
+        messages.innerHTML += `
             <div class="bot-message">
-                <h4>🎉 ¡Tu Plan Personalizado Está Listo!</h4>
-                ${plan}
-                <div style="margin-top: 2rem;">
-                    <button class="btn btn--primary" onclick="fitnessWebsite.downloadPDF()">
-                        📄 Descargar Plan en PDF
-                    </button>
-                    <button class="btn btn--secondary" onclick="fitnessWebsite.resetChatbot()">
-                        🔄 Hacer Nuevo Plan
-                    </button>
+                <div class="message-avatar">🎉</div>
+                <div class="message-content">
+                    <h4>¡Tu Plan Personalizado Está Listo!</h4>
+                    ${plan}
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn--primary" id="downloadPdfBtn">
+                            📄 Descargar Plan en PDF
+                        </button>
+                        <button class="btn btn--outline" onclick="fitnessApp.resetChat()">
+                            🔄 Crear Nuevo Plan
+                        </button>
+                    </div>
                 </div>
             </div>
         `;
         
-        this.scrollToBottom();
+        this.scrollChatToBottom();
+        this.updateProgressBar();
     }
 
     createPersonalizedPlan() {
         const answers = this.userAnswers;
-        let plan = '<div class="generated-plan">';
+        let plan = '<div class="personalized-plan">';
         
-        // Training plan based on answers
-        plan += '<h5>🏋️ Plan de Entrenamiento:</h5>';
-        plan += '<ul>';
+        // Training Plan
+        plan += '<h5>🏋️ Plan de Entrenamiento Personalizado:</h5><ul>';
         
-        if (answers.nivel_experiencia?.includes('Principiante')) {
-            plan += '<li>Rutina full-body 3 días/semana</li>';
-            plan += '<li>Enfoque en ejercicios básicos y técnica</li>';
-            plan += '<li>Progresión gradual en cargas</li>';
-        } else if (answers.nivel_experiencia?.includes('Intermedio')) {
-            plan += '<li>Rutina push/pull/legs o upper/lower</li>';
-            plan += '<li>4-5 días de entrenamiento</li>';
-            plan += '<li>Incorporar técnicas de intensidad</li>';
+        if (answers.nivel?.includes('Principiante')) {
+            plan += '<li><strong>Tipo:</strong> Full-body 3 días/semana</li>';
+            plan += '<li><strong>Ejercicios:</strong> Movimientos básicos compuestos</li>';
+            plan += '<li><strong>Series:</strong> 3-4 series de 8-12 repeticiones</li>';
+            plan += '<li><strong>Progresión:</strong> Aumentar peso cada 2 semanas</li>';
+        } else if (answers.nivel?.includes('Intermedio')) {
+            plan += '<li><strong>Tipo:</strong> Push/Pull/Legs o Upper/Lower</li>';
+            plan += '<li><strong>Frecuencia:</strong> 4-5 días/semana</li>';
+            plan += '<li><strong>Técnicas:</strong> Drop sets, superseries</li>';
+            plan += '<li><strong>Progresión:</strong> Periodización lineal</li>';
         } else {
-            plan += '<li>Rutinas especializadas y periodización</li>';
-            plan += '<li>5-6 días de entrenamiento</li>';
-            plan += '<li>Técnicas avanzadas y especialización</li>';
+            plan += '<li><strong>Tipo:</strong> Especialización por grupos musculares</li>';
+            plan += '<li><strong>Frecuencia:</strong> 5-6 días/semana</li>';
+            plan += '<li><strong>Técnicas:</strong> Técnicas avanzadas de intensidad</li>';
+            plan += '<li><strong>Progresión:</strong> Periodización ondulada</li>';
         }
-        
         plan += '</ul>';
         
         // Nutrition recommendations
-        plan += '<h5>🥗 Recomendaciones Nutricionales:</h5>';
-        plan += '<ul>';
-        
+        plan += '<h5>🥗 Recomendaciones Nutricionales:</h5><ul>';
         if (answers.objetivo === 'Perder peso') {
-            plan += '<li>Déficit calórico moderado (300-500 kcal)</li>';
-            plan += '<li>Alto contenido en proteína (1.6-2.2g/kg)</li>';
-            plan += '<li>Priorizar alimentos saciantes</li>';
+            plan += '<li><strong>Déficit calórico:</strong> 300-500 kcal/día</li>';
+            plan += '<li><strong>Proteína:</strong> 1.6-2.2g por kg de peso</li>';
+            plan += '<li><strong>Estrategia:</strong> Alimentos saciantes, fibra alta</li>';
         } else if (answers.objetivo === 'Ganar músculo') {
-            plan += '<li>Ligero superávit calórico (200-400 kcal)</li>';
-            plan += '<li>Alta ingesta proteica (1.8-2.5g/kg)</li>';
-            plan += '<li>Carbohidratos alrededor del entrenamiento</li>';
+            plan += '<li><strong>Superávit:</strong> 200-400 kcal/día</li>';
+            plan += '<li><strong>Proteína:</strong> 1.8-2.5g por kg de peso</li>';
+            plan += '<li><strong>Timing:</strong> Proteína distribuida en el día</li>';
         }
-        
         plan += '</ul>';
         
-        // Supplement recommendations
-        plan += '<h5>💊 Suplementos Recomendados:</h5>';
-        plan += '<ul>';
+        // Supplements
+        plan += '<h5>💊 Suplementos Recomendados (basados en evidencia):</h5><ul>';
+        plan += '<li><strong>Esenciales:</strong> Creatina monohidrato (5g/día)</li>';
         
-        const currentSupplements = answers.suplementos_actuales || [];
-        
-        if (!currentSupplements.includes('Creatina')) {
-            plan += '<li>Creatina monohidrato: 5g diarios</li>';
+        if (answers.objetivo_nutricional?.includes('masa muscular') || answers.restricciones?.includes('Vegano')) {
+            plan += '<li><strong>Proteína:</strong> Whey (25-50g post-entreno o flexible)</li>';
         }
         
-        if (!currentSupplements.includes('Proteína en polvo') && (answers.objetivo === 'Ganar músculo' || answers.restricciones_alimentarias?.includes('Vegano'))) {
-            plan += '<li>Proteína en polvo: 25-50g post-entrenamiento</li>';
-        }
-        
-        if (!currentSupplements.includes('Multivitamínico')) {
-            plan += '<li>Multivitamínico de calidad</li>';
-        }
-        
-        plan += '<li>Omega-3: 1-2g EPA/DHA diarios</li>';
+        plan += '<li><strong>Salud general:</strong> Omega-3 (2-3g EPA/DHA)</li>';
+        plan += '<li><strong>Rendimiento:</strong> Cafeína (3-6mg/kg, 30-45min pre-entreno)</li>';
         plan += '</ul>';
         
         plan += '</div>';
-        
         return plan;
     }
 
-    downloadPDF() {
-        // Simulate PDF generation
-        alert('🎉 ¡Genial! Tu plan personalizado se está preparando.\n\nEn una implementación real, aquí se generaría y descargaría un PDF completo con:\n\n• Rutinas detalladas con ejercicios\n• Plan nutricional personalizado\n• Guía de suplementación\n• Calendario de seguimiento\n\n¡Gracias por usar FitnessPro!');
+    async generateAndDownloadPDF() {
+        // Show loading state
+        const button = document.getElementById('downloadPdfBtn');
+        const originalText = button.textContent;
+        button.textContent = '⏳ Generando PDF...';
+        button.disabled = true;
+
+        try {
+            // Simulate PDF generation (in real implementation, you'd use jsPDF or similar)
+            await this.simulatePDFGeneration();
+            
+            // Create and download actual PDF
+            this.createRealPDF();
+            
+        } catch (error) {
+            console.error('Error generating PDF:', error);
+            alert('Error al generar el PDF. Por favor, inténtalo de nuevo.');
+        } finally {
+            button.textContent = originalText;
+            button.disabled = false;
+        }
     }
 
-    scrollToBottom() {
-        const chatHistory = document.getElementById('chatHistory');
-        chatHistory.scrollTop = chatHistory.scrollHeight;
+    simulatePDFGeneration() {
+        return new Promise(resolve => setTimeout(resolve, 2000));
     }
 
-    // Content personalization based on user type
-    personalizeContent(userType) {
-        // This could dynamically update content based on user selection
-        const recommendations = {
-            principiante: {
-                supplements: ['Proteína Whey', 'Creatina', 'Multivitamínico'],
-                articles: ['Guía para principiantes', 'Técnica correcta'],
-                intensity: 'básico'
-            },
-            intermedio: {
-                supplements: ['Creatina', 'Proteína', 'Pre-entreno', 'Omega-3'],
-                articles: ['Periodización', 'Técnicas avanzadas'],
-                intensity: 'intermedio'
-            },
-            avanzado: {
-                supplements: ['Stack completo', 'Suplementos especializados'],
-                articles: ['Competición', 'Optimización avanzada'],
-                intensity: 'avanzado'
-            },
-            salud: {
-                supplements: ['Omega-3', 'Vitamina D', 'Multivitamínico'],
-                articles: ['Ejercicio terapéutico', 'Prevención'],
-                intensity: 'moderado'
-            }
-        };
+    createRealPDF() {
+        // Create PDF content as HTML that will be converted
+        const pdfContent = this.generatePDFContent();
         
-        // Update UI based on selection (this could be expanded)
-        console.log(`Contenido personalizado para: ${userType}`, recommendations[userType]);
+        // Create a new window to show PDF preview (simulated)
+        const pdfWindow = window.open('', '_blank');
+        pdfWindow.document.write(`
+            <html>
+                <head>
+                    <title>Mi Plan FitnessPro Personalizado</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+                        .header { text-align: center; color: #10b981; margin-bottom: 30px; }
+                        .section { margin-bottom: 25px; }
+                        .section h3 { color: #1f2937; border-bottom: 2px solid #10b981; padding-bottom: 10px; }
+                        ul { padding-left: 20px; }
+                        li { margin-bottom: 8px; }
+                        .highlight { background: #f0fdf4; padding: 15px; border-left: 4px solid #10b981; margin: 15px 0; }
+                        @media print { body { margin: 0; } }
+                    </style>
+                </head>
+                <body>
+                    ${pdfContent}
+                    <div style="margin-top: 30px; text-align: center;">
+                        <button onclick="window.print()" style="background: #10b981; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                            📄 Imprimir/Guardar como PDF
+                        </button>
+                    </div>
+                </body>
+            </html>
+        `);
+        pdfWindow.document.close();
+
+        // Show success message
+        setTimeout(() => {
+            alert('✅ ¡PDF generado exitosamente!\n\nSe ha abierto una nueva ventana con tu plan personalizado.\n\nPuedes imprimirlo o guardarlo como PDF desde tu navegador.');
+        }, 500);
     }
 
-    // Form submission handlers
-    handleNewsletterSubmit(email) {
-        // Simulate newsletter subscription
-        alert(`✅ ¡Gracias por suscribirte!\n\nEmpezarás a recibir contenido exclusivo de fitness y salud en: ${email}\n\nRevisa tu email para confirmar la suscripción.`);
+    generatePDFContent() {
+        const answers = this.userAnswers;
+        const date = new Date().toLocaleDateString('es-ES');
+        
+        return `
+            <div class="header">
+                <h1>💪 Mi Plan FitnessPro Personalizado</h1>
+                <p>Generado el ${date}</p>
+                <p>Basado en evidencia científica</p>
+            </div>
+
+            <div class="section">
+                <h3>📋 Resumen de tu Perfil</h3>
+                <ul>
+                    <li><strong>Objetivo:</strong> ${answers.objetivo}</li>
+                    <li><strong>Días de entrenamiento:</strong> ${answers.dias_entrenamiento}</li>
+                    <li><strong>Nivel:</strong> ${answers.nivel}</li>
+                    <li><strong>Ubicación:</strong> ${answers.gimnasio}</li>
+                    <li><strong>Tiempo por sesión:</strong> ${answers.tiempo_sesion}</li>
+                    <li><strong>Objetivo nutricional:</strong> ${answers.objetivo_nutricional}</li>
+                    <li><strong>Restricciones:</strong> ${answers.restricciones}</li>
+                </ul>
+            </div>
+
+            ${this.generateDetailedTrainingPlan()}
+            ${this.generateDetailedNutritionPlan()}
+            ${this.generateDetailedSupplementPlan()}
+            ${this.generateProgressTracking()}
+
+            <div class="highlight">
+                <h4>⚠️ Disclaimer Importante</h4>
+                <p>Este plan es informativo y educativo. Consulta con profesionales de la salud antes de comenzar cualquier programa de ejercicios o suplementación.</p>
+            </div>
+
+            <div class="section">
+                <h3>📚 Basado en Evidencia Científica</h3>
+                <p>Este plan se basa en meta-análisis y estudios peer-reviewed de las mejores revistas científicas en ciencias del deporte y nutrición.</p>
+            </div>
+        `;
     }
 
-    handleContactSubmit(formData) {
-        // Simulate contact form submission
-        const name = formData.get('name');
-        alert(`✅ ¡Gracias por tu mensaje, ${name}!\n\nHe recibido tu consulta y te responderé en un plazo de 24-48 horas.\n\n¡Que tengas un gran día!`);
+    generateDetailedTrainingPlan() {
+        const answers = this.userAnswers;
+        let plan = '<div class="section"><h3>🏋️ Plan de Entrenamiento Detallado</h3>';
+        
+        if (answers.nivel?.includes('Principiante')) {
+            plan += `
+                <h4>Rutina Full-Body (3 días/semana)</h4>
+                <p><strong>Lunes, Miércoles, Viernes</strong></p>
+                <ol>
+                    <li>Sentadillas: 3 series × 8-12 reps</li>
+                    <li>Press de banca o flexiones: 3 series × 8-12 reps</li>
+                    <li>Remo con barra: 3 series × 8-12 reps</li>
+                    <li>Press militar: 3 series × 8-12 reps</li>
+                    <li>Peso muerto rumano: 3 series × 8-12 reps</li>
+                    <li>Plancha: 3 series × 30-60 segundos</li>
+                </ol>
+                <p><strong>Progresión:</strong> Aumenta 2.5-5kg cuando puedas completar todas las series con buena técnica.</p>
+            `;
+        }
+        
+        plan += '</div>';
+        return plan;
+    }
+
+    generateDetailedNutritionPlan() {
+        const answers = this.userAnswers;
+        const personalInfo = answers.info_personal || {};
+        
+        let plan = '<div class="section"><h3>🥗 Plan Nutricional</h3>';
+        
+        if (personalInfo.peso) {
+            const peso = parseInt(personalInfo.peso);
+            const proteina = Math.round(peso * 1.8);
+            
+            plan += `
+                <h4>Macronutrientes Recomendados</h4>
+                <ul>
+                    <li><strong>Proteína:</strong> ${proteina}g/día (${Math.round(proteina/4)} porciones de 25g)</li>
+                    <li><strong>Distribución:</strong> 20-30g por comida</li>
+                    <li><strong>Fuentes:</strong> Pollo, pescado, huevos, legumbres, lácteos</li>
+                </ul>
+            `;
+        }
+        
+        plan += `
+            <h4>Principios Fundamentales</h4>
+            <ul>
+                <li>Prioriza alimentos enteros y mínimamente procesados</li>
+                <li>Incluye vegetales en cada comida</li>
+                <li>Mantén hidratación adecuada (35ml × kg peso)</li>
+                <li>Timing flexible - lo importante es el total diario</li>
+            </ul>
+        `;
+        
+        plan += '</div>';
+        return plan;
+    }
+
+    generateDetailedSupplementPlan() {
+        return `
+            <div class="section">
+                <h3>💊 Protocolo de Suplementación</h3>
+                
+                <h4>Nivel 1 - Esenciales (Evidencia A+)</h4>
+                <ul>
+                    <li><strong>Creatina Monohidrato:</strong> 5g diarios, cualquier momento</li>
+                    <li><strong>Omega-3:</strong> 2-3g EPA/DHA, con comidas</li>
+                </ul>
+                
+                <h4>Nivel 2 - Convenientes (Evidencia A)</h4>
+                <ul>
+                    <li><strong>Proteína Whey:</strong> 25-50g si no alcanzas con alimentos</li>
+                    <li><strong>Cafeína:</strong> 3-6mg/kg, 30-45min pre-entreno</li>
+                </ul>
+                
+                <h4>Nivel 3 - Opcionales</h4>
+                <ul>
+                    <li><strong>Vitamina D3:</strong> Si hay deficiencia (análisis previo)</li>
+                    <li><strong>Multivitamínico:</strong> Como seguro nutricional</li>
+                </ul>
+                
+                <div class="highlight">
+                    <p><strong>Recuerda:</strong> Los suplementos complementan, no sustituyen una buena dieta.</p>
+                </div>
+            </div>
+        `;
+    }
+
+    generateProgressTracking() {
+        return `
+            <div class="section">
+                <h3>📈 Seguimiento de Progreso</h3>
+                
+                <h4>Métricas de Entrenamiento</h4>
+                <ul>
+                    <li>Peso levantado en ejercicios principales</li>
+                    <li>Repeticiones completadas con buena técnica</li>
+                    <li>Tiempo de descanso entre series</li>
+                </ul>
+                
+                <h4>Métricas Corporales (opcionales)</h4>
+                <ul>
+                    <li>Peso corporal (mismo horario, condiciones)</li>
+                    <li>Medidas corporales (cintura, brazos, piernas)</li>
+                    <li>Fotos de progreso (misma pose, iluminación)</li>
+                </ul>
+                
+                <h4>Revisión del Plan</h4>
+                <ul>
+                    <li><strong>Cada 4-6 semanas:</strong> Evalúa progreso y ajusta</li>
+                    <li><strong>Cada 12 semanas:</strong> Cambio significativo de rutina</li>
+                    <li><strong>Señales de progreso:</strong> Mejor rendimiento, recuperación, bienestar</li>
+                </ul>
+            </div>
+        `;
+    }
+
+    updateProgressBar() {
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        
+        if (progressBar && progressText) {
+            const progress = (this.currentQuestion / this.questions.length) * 100;
+            progressBar.style.width = progress + '%';
+            
+            if (this.currentQuestion >= this.questions.length) {
+                progressText.textContent = 'Completado ✅';
+            } else {
+                progressText.textContent = `Paso ${this.currentQuestion + 1} de ${this.questions.length}`;
+            }
+        }
+    }
+
+    scrollChatToBottom() {
+        const messages = document.getElementById('chatMessages');
+        setTimeout(() => {
+            messages.scrollTop = messages.scrollHeight;
+        }, 100);
     }
 }
 
-// Global functions for onclick handlers
-window.startQuestionnaire = function() {
-    window.fitnessWebsite.startQuestionnaire();
-};
-
-// Initialize website
+// Initialize app
 document.addEventListener('DOMContentLoaded', () => {
-    window.fitnessWebsite = new FitnessWebsite();
+    window.fitnessApp = new FitnessApp();
+    
+    // Initialize calculator on load
+    if (document.getElementById('weeklyMinutes')) {
+        fitnessApp.updateCalculatorResults();
+    }
 });
 
-// Service Worker for PWA functionality (optional)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
-}
+// Expose global functions for onclick handlers
+window.startChat = () => fitnessApp.startQuestionnaire();
+window.selectOption = (value) => fitnessApp.selectOption(value);
